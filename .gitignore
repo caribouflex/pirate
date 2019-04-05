@@ -8,3 +8,6 @@
 
 # beyond compare file
 *.orig
+
+# system
+.DS_Store
