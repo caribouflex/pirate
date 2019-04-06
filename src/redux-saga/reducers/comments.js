@@ -1,11 +1,17 @@
 import { ACTIONS_COMMENTS } from "../constants";
 
-const comments = (state = {}, action) => {
+const initialState = { loading: false };
+
+const comments = (state = initialState, action) => {
   switch (action.type) {
     case ACTIONS_COMMENTS.addComments:
-      return state;
+      return {
+        allIds: action.result.commentsId,
+        byId: action.result.comments,
+        loading: false
+      };
     case ACTIONS_COMMENTS.getComments:
-      return state;
+      return { ...state, loading: true };
     default:
       return state;
   }

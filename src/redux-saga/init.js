@@ -10,8 +10,8 @@ const sagaMiddleware = createSagaMiddleware();
  * @returns Redux store including middlewares.
  */
 export default function initStore(initialState = undefined) {
-  const middlewares = [sagaMiddleware];
-  const enhancers = [applyMiddleware(...middlewares)];
+  const middleware = [sagaMiddleware];
+  const enhancers = [applyMiddleware(...middleware)];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   const composeEnhancers =
