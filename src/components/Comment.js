@@ -4,16 +4,19 @@ import PropTypes from "prop-types";
 const propTypes = {
   text: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired
+  date: PropTypes.number.isRequired,
+  responseCount: PropTypes.number.isRequired
 };
 
 const defaultProps = {};
 
-const Comment = ({ author, text, date }) => (
+const Comment = ({ author, text, date, responseCount }) => (
   <div>
     <span>{author}</span>
     <span>{text}</span>
     <span>{date}</span>
+    <br />
+    <span>{responseCount}</span>
   </div>
 );
 
