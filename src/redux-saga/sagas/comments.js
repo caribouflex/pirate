@@ -1,24 +1,33 @@
-import { put, takeLatest } from "redux-saga/effects";
+import { put, takeLatest, all, call } from "redux-saga/effects";
 import { ACTIONS_COMMENTS } from "../constants";
 
-function* fetchComments(params) {
-  console.log("FETCH PARAM", params);
-  const id = 1;
-  const commentsId = yield fetch(
-    `https://hacker-news.firebaseio.com/v0/item/${id}.json`
-  ).then(response => response.json());
+function* fetchComments({ storyCommentIds, storyId }) {
+  console.log("FETCH PARAM", storyCommentIds, storyId);
 
-  // let selectCommentsId = commentsId.slice(0, 10);
-  // let stories = {};
-  // selectCommentsId.forEach(id => {
-  //   fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-  //     .then(response => response.json())
-  //     .then(json => {
-  //       stories[id] = json;
-  //     });
-  // });
-  // const result = { stories, commentsId };
-  yield put({ type: ACTIONS_COMMENTS.addComments, commentsId });
+  let selectCommentsId = storyCommentIds.slice(0, 10);
+  const commentObj = {};
+  let responses = yield all(
+    selectCommentsId.map(commentId => {
+      return call(
+        fetch,
+        `https://hacker-news.firebaseio.com/v0/item/${commentId}.json`
+      );
+    })
+  );
+  let comments = yield all(
+    responses.map(comment => {
+      return call([comment, comment.json]);
+    })
+  );
+
+  //convert to object
+  comments.forEach(element => {
+    commentObj[element.id] = element;
+  });
+
+  const action = { commentObj, storyId };
+
+  yield put({ type: ACTIONS_COMMENTS.addComments, action });
 }
 
 function* commentsActionWatcher() {

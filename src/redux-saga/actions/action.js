@@ -4,7 +4,8 @@ export const getStories = () => ({
   type: ACTIONS_STORIES.getStories
 });
 
-export const getComments = commentsId => ({
+export const getComments = (storyCommentIds, storyId) => ({
   type: ACTIONS_COMMENTS.getComments,
-  commentsId
+  storyCommentIds,
+  storyId
 });
