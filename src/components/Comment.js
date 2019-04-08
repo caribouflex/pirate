@@ -1,24 +1,45 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+import Details from "./Details";
+
+const Container = styled.div`
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Content = styled.article``;
 
 const propTypes = {
+  id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  responseCount: PropTypes.number.isRequired
+  loadResponses: PropTypes.func.isRequired,
+  responsesId: PropTypes.arrayOf(PropTypes.string)
 };
 
-const defaultProps = {};
+const defaultProps = {
+  responsesId: []
+};
 
-const Comment = ({ author, text, date, responseCount }) => (
-  <div>
-    <span>{author}</span>
-    <span>{text}</span>
-    <span>{date}</span>
-    <br />
-    <span>{responseCount}</span>
-  </div>
-);
+const Comment = ({ id, author, text, date, loadResponses, responsesId }) => {
+  const handleClick = () => {
+    loadResponses(responsesId, id);
+  };
+  return (
+    <Container>
+      <Content dangerouslySetInnerHTML={{ __html: text }} />
+      <Details
+        author={author}
+        date={date}
+        loadComments={handleClick}
+        commentsCount={responsesId && responsesId.length}
+      />
+    </Container>
+  );
+};
 
 Comment.propTypes = propTypes;
 Comment.defaultProps = defaultProps;

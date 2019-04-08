@@ -1,8 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { connect } from "react-redux";
 import Comment from "../components/Comment";
 import { getComments } from "../redux-saga/actions/action";
+import { Paper } from "@material-ui/core";
+import { Title } from "../style/basic";
+
+const Container = styled.div`
+  padding: 20px;
+  flex: 1;
+`;
+
+const PaperStyled = styled(Paper)`
+  padding: 20px;
+  margin: 20px;
+  background-color: #323232 !important;
+`;
 
 const propTypes = {
   comments: PropTypes.shape({})
@@ -14,24 +28,24 @@ const defaultProps = {
 
 const Comments = ({ comments, getCommentsAction }) => {
   return (
-    <div>
+    <Container>
+      <Title>Comments</Title>
       {Object.keys(comments).map(id => {
         const comment = comments[id];
         return (
-          <div key={comment.id}>
+          <PaperStyled key={comment.id} elevation={2}>
             <Comment
+              id={comment.id}
               author={comment.by}
               text={comment.text}
               date={comment.time}
-              responseCount={comment.kids && comment.kids.length}
+              loadResponses={getCommentsAction}
+              responsesId={comment.kids}
             />
-            <button onClick={() => getCommentsAction(comment.kids, comment.id)}>
-              Load comment childs
-            </button>
-          </div>
+          </PaperStyled>
         );
       })}
-    </div>
+    </Container>
   );
 };
 
