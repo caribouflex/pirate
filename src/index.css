@@ -4,8 +4,8 @@ body {
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(style/images/b1.jpg);
-  background-position: 50% 0px;
+  background-color: #0b0c10;
+  color: #c5c6c7;
 }
 
 code {

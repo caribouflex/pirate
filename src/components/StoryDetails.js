@@ -16,6 +16,7 @@ const Avatar = styled.img`
   border-radius: 25px;
   border: 1px solid #efefef;
   margin: auto;
+  padding: 4px;
 `;
 
 const AuthorContainer = styled.div`
@@ -33,7 +34,7 @@ const propTypes = {};
 
 const defaultProps = {};
 
-const Details = ({ author, date, loadComments, commentsCount }) => {
+const StoryDetails = ({ author, date, loadComments, commentsCount }) => {
   return (
     <Bottom>
       <AuthorContainer>
@@ -51,7 +52,7 @@ const Details = ({ author, date, loadComments, commentsCount }) => {
   );
 };
 
-Details.propTypes = propTypes;
-Details.defaultProps = defaultProps;
+StoryDetails.propTypes = propTypes;
+StoryDetails.defaultProps = defaultProps;
 
-export default Details;
+export default StoryDetails;

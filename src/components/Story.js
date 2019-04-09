@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import Icon, { ThumbUpIcon } from "../style/icons";
 import { Link } from "../style/basic";
-import Details from "./Details";
+import StoryDetails from "./StoryDetails";
+import Score from "./Score";
+import { theme } from "../style/theme";
 
 const Container = styled.div`
-  color: #fff;
+  color: ${({ selected }) => {
+    return !selected ? theme.colors.font : theme.colors.secondary;
+  }}
   display: flex;
   flex-direction: row;
 `;
@@ -15,50 +18,20 @@ const Left = styled.div`
   flex: 1;
 `;
 
-const ScoreZone = styled.div`
-  margin: auto;
-  color: #4281e6;
-`;
-
 const Title = styled.h1`
   font-size: 1.6rem;
 `;
 
-const Bottom = styled.h1`
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-  font-size: 1rem;
-`;
-
-const Avatar = styled.img`
-  width: 24px;
-  height: 24px;
-  border-radius: 25px;
-  border: 1px solid #efefef;
-  margin: auto;
-`;
-
-const AuthorContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const BottomData = styled.div`
-  margin: auto 0 auto 10px;
-  margin-left: 15px;
-  font-style: italic;
-`;
-
 const propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,
   date: PropTypes.number.isRequired,
   showComments: PropTypes.func.isRequired,
-  commentsId: PropTypes.arrayOf(PropTypes.string)
+  commentsId: PropTypes.arrayOf(PropTypes.number),
+  selected: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
@@ -74,30 +47,28 @@ const Story = ({
   score,
   commentsCount,
   showComments,
-  commentsId
+  commentsId,
+  selected
 }) => {
   const handleClick = () => {
     showComments(commentsId, id);
   };
   return (
-    <Container>
+    <Container selected={selected}>
       <Left>
         <Title>
-          <Link href={link} target="_blank">
+          <Link href={link} target="_blank" dark={selected}>
             {title}
           </Link>
         </Title>
-        <Details
+        <StoryDetails
           author={author}
           date={date}
           loadComments={handleClick}
           commentsCount={commentsCount}
         />
       </Left>
-      <ScoreZone>
-        <Icon color="#4281e6" IconElement={ThumbUpIcon} />
-        <div>{score}</div>
-      </ScoreZone>
+      <Score score={score} />
     </Container>
   );
 };

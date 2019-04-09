@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "./theme";
 
 export const Title = styled.h2`
   color: #3c3c3c;
@@ -8,11 +9,13 @@ export const Title = styled.h2`
 
 export const Link = styled.a`
   text-decoration: none;
-  color: #d2cfcf;
   cursor: pointer;
 
   :link {
-    color: #d2cfcf;
+    color: ${({ dark }) => {
+      console.log("dark", dark);
+      return !dark ? theme.colors.darkerFont : "#616161";
+    }};
   }
 
   :visited {
@@ -20,10 +23,10 @@ export const Link = styled.a`
   }
 
   :hover {
-    color: #4281e6;
+    color: ${theme.colors.accent};
   }
 
   :active {
-    color: #155aca;
+    color: ${theme.colors.accent}80;
   }
 `;

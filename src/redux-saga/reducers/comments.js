@@ -13,8 +13,11 @@ const comments = (state = {}, action) => {
       };
     case ACTIONS_COMMENTS.getComments:
       return { ...state, loading: true };
-    case ACTIONS_COMMENTS.setSelectedStory:
-      return { ...state, selectedStoryId: action.storyId };
+    case ACTIONS_COMMENTS.setSelectedId:
+      return {
+        ...state,
+        selectedId: action.id
+      };
     default:
       return state;
   }

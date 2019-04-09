@@ -1,12 +1,13 @@
 const ACTIONS_STORIES = {
   getStories: "GET_STORIES",
-  addStories: "ADD_STORIES"
+  addStories: "ADD_STORIES",
+  setSelected: "SET_SELECTED"
 };
 
 const ACTIONS_COMMENTS = {
   getComments: "GET_COMMENTS",
   addComments: "ADD_COMMENTS",
-  setSelectedStory: "SET_SELECTED_STORY"
+  setSelectedId: "SET_SELECTED_ID"
 };
 
 const APP = {};

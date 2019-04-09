@@ -10,7 +10,12 @@ export const getComments = (storyCommentIds, storyId) => ({
   storyId
 });
 
-export const setSelectedStory = storyId => ({
-  type: ACTIONS_COMMENTS.setSelectedStory,
-  storyId
+export const setSelectedId = id => ({
+  type: ACTIONS_COMMENTS.setSelectedId,
+  id
+});
+
+export const setSelected = id => ({
+  type: ACTIONS_STORIES.setSelected,
+  id
 });
