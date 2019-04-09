@@ -25,11 +25,13 @@ const propTypes = {
   author: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   loadResponses: PropTypes.func.isRequired,
-  responsesId: PropTypes.arrayOf(PropTypes.string),
+  responsesId: PropTypes.arrayOf(PropTypes.number),
+  parent: PropTypes.string
 };
 
 const defaultProps = {
-  responsesId: []
+  responsesId: [],
+  parent: null
 };
 
 const Comment = ({
@@ -39,10 +41,11 @@ const Comment = ({
   date,
   loadResponses,
   responsesId,
-  storyId
+  storyId,
+  parent
 }) => {
   const handleClick = () => {
-    loadResponses(responsesId, id);
+    loadResponses(responsesId, id, parent);
   };
   return (
     <Container>

@@ -35,7 +35,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  commentsId: []
+  commentsId: [],
 };
 
 const Story = ({

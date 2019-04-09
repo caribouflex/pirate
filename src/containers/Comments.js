@@ -6,7 +6,7 @@ import Comment from "../components/Comment";
 import {
   getComments,
   setSelectedId,
-  setSelected
+  setSelectedStory
 } from "../redux-saga/actions/action";
 import { IconButton } from "@material-ui/core";
 import Icon, { CloseIcon, ArrowBackIcon } from "../style/icons";
@@ -22,6 +22,12 @@ const Container = styled.div`
 const Title = styled.h1`
   font-size: 1.3rem;
   flex: 1;
+`;
+
+const IconButtonStyled = styled(IconButton)`
+  ${({ hidden }) => {
+    return hidden ? "display:none !important;" : "display:block;";
+  }}
 `;
 
 const Header = styled.header`
@@ -40,42 +46,45 @@ const propTypes = {
   comments: PropTypes.shape({}),
   getCommentsAction: PropTypes.func.isRequired,
   setSelectedIdAction: PropTypes.func.isRequired,
-  setSelectedAction: PropTypes.func.isRequired
+  setSelectedAction: PropTypes.func.isRequired,
+  parentId: PropTypes.string
 };
 
 const defaultProps = {
-  comments: {}
+  comments: {},
+  parentId: null
 };
 
 const Comments = ({
   comments,
   getCommentsAction,
   setSelectedIdAction,
-  setSelectedAction
+  setSelectedStoryAction,
+  parentId
 }) => {
-  const handleClick = (kids, id) => {
+  const handleClick = (kids, id, parentId) => {
     setSelectedIdAction(id);
-    getCommentsAction(kids, id);
+    getCommentsAction(kids, id, parentId);
   };
   const backClick = () => {
-    // setSelectedIdAction(comments[0].parent);
-    //TODO
+    console.log("backClick", parentId);
+    setSelectedIdAction(parentId);
   };
   const closeClick = () => {
-    setSelectedAction(null);
+    setSelectedStoryAction(null);
     setSelectedIdAction(null);
   };
   return (
     <Container>
       <Header>
-        <IconButton onClick={backClick}>
+        <IconButtonStyled onClick={backClick} hidden={parentId === null}>
           <Icon
             IconElement={ArrowBackIcon}
             color={theme.colors.font}
             width={30}
             height={30}
           />
-        </IconButton>
+        </IconButtonStyled>
         <Title>Comments</Title>
         <IconButton onClick={closeClick}>
           <Icon
@@ -88,8 +97,9 @@ const Comments = ({
       </Header>
       {Object.keys(comments).map(id => {
         const comment = comments[id];
+        console.log("COMMENT", comment, id);
         return (
-          <Paper>
+          <Paper key={comment.id}>
             <Comment
               id={comment.id}
               author={comment.by}
@@ -97,6 +107,7 @@ const Comments = ({
               date={comment.time}
               loadResponses={handleClick}
               responsesId={comment.kids}
+              parent={comment.parent}
             />
           </Paper>
         );
@@ -110,15 +121,17 @@ Comments.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
   const id = state.comments.selectedId || state.comments.selectedStoryId;
+  const obj = state.comments[id];
   return {
-    comments: state.comments[id]
+    parentId: obj && obj.parent,
+    comments: obj && obj.childrens
   };
 };
 
 const mapDispatchToProps = {
   getCommentsAction: getComments,
   setSelectedIdAction: setSelectedId,
-  setSelectedAction: setSelected
+  setSelectedStoryAction: setSelectedStory
 };
 
 export default connect(

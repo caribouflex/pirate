@@ -1,7 +1,7 @@
 const ACTIONS_STORIES = {
   getStories: "GET_STORIES",
   addStories: "ADD_STORIES",
-  setSelected: "SET_SELECTED"
+  setSelectedStory: "SET_SELECTED_STORY"
 };
 
 const ACTIONS_COMMENTS = {

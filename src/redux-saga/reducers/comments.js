@@ -4,8 +4,8 @@ const comments = (state = {}, action) => {
   switch (action.type) {
     case ACTIONS_COMMENTS.addComments:
       const byStoryId = {};
-      const { commentObj, storyId } = action.action;
-      byStoryId[storyId] = commentObj;
+      const { commentObj, storyId, parentId } = action.action;
+      byStoryId[storyId] = { childrens: commentObj, parent: parentId };
       return {
         ...state,
         ...byStoryId,

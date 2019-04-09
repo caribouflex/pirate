@@ -13,7 +13,6 @@ export const Link = styled.a`
 
   :link {
     color: ${({ dark }) => {
-      console.log("dark", dark);
       return !dark ? theme.colors.darkerFont : "#616161";
     }};
   }

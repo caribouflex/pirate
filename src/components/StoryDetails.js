@@ -30,7 +30,12 @@ const BottomData = styled.div`
   font-style: italic;
 `;
 
-const propTypes = {};
+const propTypes = {
+  author: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  loadComments: PropTypes.func.isRequired,
+  commentsCount: PropTypes.number.isRequired
+};
 
 const defaultProps = {};
 

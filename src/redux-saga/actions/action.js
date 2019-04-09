@@ -4,10 +4,11 @@ export const getStories = () => ({
   type: ACTIONS_STORIES.getStories
 });
 
-export const getComments = (storyCommentIds, storyId) => ({
+export const getComments = (storyCommentIds, storyId, parentId) => ({
   type: ACTIONS_COMMENTS.getComments,
   storyCommentIds,
-  storyId
+  storyId,
+  parentId
 });
 
 export const setSelectedId = id => ({
@@ -15,7 +16,7 @@ export const setSelectedId = id => ({
   id
 });
 
-export const setSelected = id => ({
-  type: ACTIONS_STORIES.setSelected,
+export const setSelectedStory = id => ({
+  type: ACTIONS_STORIES.setSelectedStory,
   id
 });

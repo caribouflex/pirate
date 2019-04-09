@@ -1,9 +1,7 @@
 import { put, takeLatest, all, call } from "redux-saga/effects";
 import { ACTIONS_COMMENTS } from "../constants";
 
-function* fetchComments({ storyCommentIds, storyId }) {
-  console.log("FETCH PARAM", storyCommentIds, storyId);
-
+function* fetchComments({ storyCommentIds, storyId, parentId }) {
   let selectCommentsId = storyCommentIds.slice(0, 10);
   const commentObj = {};
   let responses = yield all(
@@ -20,12 +18,12 @@ function* fetchComments({ storyCommentIds, storyId }) {
     })
   );
 
-  //convert to object
+  // convert to object
   comments.forEach(element => {
     commentObj[element.id] = element;
   });
 
-  const action = { commentObj, storyId };
+  const action = { commentObj, storyId, parentId };
 
   yield put({ type: ACTIONS_COMMENTS.addComments, action });
 }

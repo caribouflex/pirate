@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import {
   getComments,
   setSelectedId,
-  setSelected
+  setSelectedStory
 } from "../redux-saga/actions/action";
 import { Paper } from "@material-ui/core";
 import styled from "styled-components";
@@ -30,7 +30,7 @@ const propTypes = {
   storiesId: PropTypes.arrayOf(PropTypes.number),
   getCommentsAction: PropTypes.func.isRequired,
   setSelectedIdAction: PropTypes.func.isRequired,
-  setSelectedAction: PropTypes.func.isRequired,
+  setSelectedStoryAction: PropTypes.func.isRequired,
   selectedStoryId: PropTypes.string
 };
 
@@ -38,22 +38,22 @@ const defaultProps = {
   stories: {},
   loading: false,
   storiesId: [],
-  selectedStoryId: null
+  selectedStoryId: undefined
 };
 
 const Stories = ({
   storiesIds,
   getCommentsAction,
   setSelectedIdAction,
-  setSelectedAction,
+  setSelectedStoryAction,
   stories,
   loading,
   selectedStoryId
 }) => {
   const handleClick = (kids, id) => {
     setSelectedIdAction(id);
-    setSelectedAction(id);
-    getCommentsAction(kids, id);
+    setSelectedStoryAction(id);
+    getCommentsAction(kids, id, null);
   };
   return (
     <Container>
@@ -76,7 +76,7 @@ const Stories = ({
                 commentsCount={story.descendants}
                 showComments={handleClick}
                 commentsId={story.kids}
-                selected={selectedStoryId && selectedStoryId === id}
+                selected={selectedStoryId ? selectedStoryId === id : false}
               />
             </PaperStyled>
           );
@@ -92,7 +92,7 @@ Stories.defaultProps = defaultProps;
 const mapDispatchToProps = {
   getCommentsAction: getComments,
   setSelectedIdAction: setSelectedId,
-  setSelectedAction: setSelected
+  setSelectedStoryAction: setSelectedStory
 };
 
 const mapStateToProps = state => {

@@ -11,7 +11,7 @@ const stories = (state = {}, action) => {
       };
     case ACTIONS_STORIES.getStories:
       return { ...state, loading: true };
-    case ACTIONS_STORIES.setSelected:
+    case ACTIONS_STORIES.setSelectedStory:
       return { ...state, selectedStoryId: action.id, loading: true };
     default:
       return state;
