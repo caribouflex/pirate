@@ -10,6 +10,7 @@ const StyledIcon = styled(Icon)`
 `;
 
 const propTypes = {
+  disabled: PropTypes.bool.isRequired,
   kidsCount: PropTypes.number.isRequired,
   loadKids: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired
@@ -17,9 +18,9 @@ const propTypes = {
 
 const defaultProps = {};
 
-const KidNavigation = ({ loadKids, kidsCount, text }) => {
+const KidNavigation = ({ loadKids, kidsCount, text, disabled }) => {
   return (
-    <Link onClick={loadKids}>
+    <Link onClick={loadKids} disabled={disabled}>
       <StyledIcon IconElement={ChatIcon} color={theme.colors.accent} />
       {kidsCount} {text}
     </Link>

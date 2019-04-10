@@ -1,9 +1,18 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Stories from "./Stories";
 import Comments from "./Comments";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import styled from "styled-components";
+
+const AppHeader = styled.header`
+  position: static;
+  width: 100%;
+  display: flex;
+  z-index: 1100;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  flex-direction: column;
+  background-color: #000;
+`;
 
 const Logo = styled.img`
   margin: auto;
@@ -18,23 +27,18 @@ const Application = styled.div`
   position: relative;
 `;
 
-class App extends Component {
+class App extends PureComponent {
   render() {
     return (
       <Application>
-        <AppBar
-          style={{ backgroundColor: "black", boxShadow: "none" }}
-          position="static"
-        >
-          <Toolbar>
-            <Logo
-              width="200"
-              height="80"
-              src="/images/logo.svg"
-              alt="logo-pirate"
-            />
-          </Toolbar>
-        </AppBar>
+        <AppHeader>
+          <Logo
+            width="200"
+            height="80"
+            src="/images/logo.svg"
+            alt="logo-pirate"
+          />
+        </AppHeader>
         <Layout>
           <Stories />
           <Comments />

@@ -52,6 +52,7 @@ const Comment = ({
       <UserDetails author={author} date={date} />
       <CommentText dangerouslySetInnerHTML={{ __html: text }} />
       <KidNavigation
+        disabled={responsesId.length === 0}
         loadKids={handleClick}
         kidsCount={responsesId.length}
         text={responsesId.length > 1 ? " responses" : " response"}

@@ -8,17 +8,17 @@ import {
   setSelectedComment,
   setSelectedStory
 } from "../redux-saga/actions";
-import { IconButton } from "@material-ui/core";
-import Icon, { CloseIcon, ArrowBackIcon } from "../style/icons";
 import { theme } from "../style/theme";
 import {
   selectCommentParent,
   selectCommentChildrens,
-  selectAllCommentsId
+  selectAllCommentsId,
+  selectCommentsOpen
 } from "../redux-saga/selectors";
+import CommentsHeader from "../components/CommentsHeader";
 
 const Container = styled.div`
-  /* ${({ visible }) => !visible && "display:none;"}; */
+  ${({ visible }) => !visible && "display:none;"};
   width: 50%;
   border-radius: 4px;
   background-color: ${theme.colors.secondary};
@@ -36,31 +36,14 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.h1`
-  font-size: 1.3rem;
-  flex: 1;
-`;
-
-const IconButtonStyled = styled(IconButton)`
-  ${({ hidden }) => {
-    return hidden ? "display:none !important;" : "display:block;";
-  }}
-`;
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  border-bottom: 1px solid ${theme.colors.darkerFont};
-`;
-
 const propTypes = {
+  allCommentsId: PropTypes.arrayOf(PropTypes.string),
   comments: PropTypes.shape({}),
   getCommentsAction: PropTypes.func.isRequired,
   parentId: PropTypes.number,
   setSelectedCommentAction: PropTypes.func.isRequired,
   setSelectedStoryAction: PropTypes.func.isRequired,
-  allCommentsId: PropTypes.arrayOf(PropTypes.string)
+  visible: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
@@ -69,66 +52,59 @@ const defaultProps = {
   allCommentsId: []
 };
 
-const Comments = ({
-  comments,
-  getCommentsAction,
-  setSelectedCommentAction,
-  setSelectedStoryAction,
-  parentId,
-  allCommentsId
-}) => {
-  const handleClick = (kids, id, parentId) => {
+class Comments extends React.PureComponent {
+  handleClick = (kids, id, parentId) => {
+    const {
+      allCommentsId,
+      getCommentsAction,
+      setSelectedCommentAction
+    } = this.props;
     setSelectedCommentAction(id);
     if (!allCommentsId.includes(id.toString())) {
       getCommentsAction(kids, id, parentId);
     }
   };
-  const backClick = () => {
+
+  backClick = () => {
+    const { setSelectedCommentAction, parentId } = this.props;
     setSelectedCommentAction(parentId);
   };
-  const closeClick = () => {
+
+  closeClick = () => {
+    const { setSelectedCommentAction, setSelectedStoryAction } = this.props;
     setSelectedStoryAction(null);
     setSelectedCommentAction(null);
   };
-  return (
-    <Container visible={Object.keys(comments).length > 0}>
-      <Header>
-        <IconButtonStyled onClick={backClick} hidden={parentId === null}>
-          <Icon
-            IconElement={ArrowBackIcon}
-            color={theme.colors.font}
-            width={30}
-            height={30}
-          />
-        </IconButtonStyled>
-        <Title>Comments</Title>
-        <IconButton onClick={closeClick}>
-          <Icon
-            IconElement={CloseIcon}
-            color={theme.colors.font}
-            width={30}
-            height={30}
-          />
-        </IconButton>
-      </Header>
-      {Object.keys(comments).map(id => {
-        const comment = comments[id];
-        return (
-          <Comment
-            key={comment.id}
-            id={comment.id}
-            author={comment.by}
-            text={comment.text}
-            date={comment.time}
-            loadResponses={handleClick}
-            responsesId={comment.kids}
-            parent={comment.parent}
-          />
-        );
-      })}
-    </Container>
-  );
-};
+
+  render() {
+    const { comments, parentId, visible } = this.props;
+    return (
+      <Container visible={visible}>
+        <CommentsHeader
+          backArrowVisible={visible}
+          onBackClick={this.backClick}
+          onCloseClick={this.closeClick}
+          parentId={parentId}
+        />
+        {Object.keys(comments).map(id => {
+          const comment = comments[id];
+          return (
+            <Comment
+              key={comment.id}
+              id={comment.id}
+              author={comment.by}
+              text={comment.text}
+              date={comment.time}
+              loadResponses={this.handleClick}
+              responsesId={comment.kids}
+              parent={comment.parent}
+            />
+          );
+        })}
+      </Container>
+    );
+  }
+}
 
 Comments.propTypes = propTypes;
 Comments.defaultProps = defaultProps;
@@ -137,7 +113,8 @@ const mapStateToProps = state => {
   return {
     parentId: selectCommentParent(state),
     comments: selectCommentChildrens(state),
-    allCommentsId: selectAllCommentsId(state)
+    allCommentsId: selectAllCommentsId(state),
+    visible: selectCommentsOpen(state)
   };
 };
 

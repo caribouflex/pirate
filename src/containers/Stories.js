@@ -54,10 +54,10 @@ const defaultProps = {
 class Stories extends React.PureComponent {
   handleClick = (kids, id) => {
     const {
+      allCommentsId,
       getCommentsAction,
       setSelectedCommentAction,
-      setSelectedStoryAction,
-      allCommentsId
+      setSelectedStoryAction
     } = this.props;
     setSelectedCommentAction(id);
     setSelectedStoryAction(id);

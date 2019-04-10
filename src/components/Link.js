@@ -9,6 +9,8 @@ const Link = styled.a`
   flex-direction: row;
   align-items: center;
 
+  ${({ disabled }) => disabled && "pointer-events: none; cursor: default;"}
+
   :link {
     color: ${({ dark }) => {
       return !dark ? theme.colors.darkerFont : "#616161";
