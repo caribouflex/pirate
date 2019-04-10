@@ -11,6 +11,11 @@ import {
 import { IconButton } from "@material-ui/core";
 import Icon, { CloseIcon, ArrowBackIcon } from "../style/icons";
 import { theme } from "../style/theme";
+import {
+  selectCommentParent,
+  selectCommentChildrens,
+  selectAllCommentsId
+} from "../redux-saga/selectors";
 
 const Container = styled.div`
   ${({ visible }) => !visible && "display:none;"};
@@ -135,13 +140,10 @@ Comments.propTypes = propTypes;
 Comments.defaultProps = defaultProps;
 
 const mapStateToProps = state => {
-  const id = state.comments.selectedId || state.comments.selectedStoryId;
-  const obj = state.comments.byId && state.comments.byId[id];
-
   return {
-    parentId: obj && obj.parent,
-    comments: obj && obj.childrens,
-    allCommentsId: state.comments.allIds
+    parentId: selectCommentParent(state),
+    comments: selectCommentChildrens(state),
+    allCommentsId: selectAllCommentsId(state)
   };
 };
 

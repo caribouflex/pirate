@@ -12,6 +12,7 @@ import { Paper, Button } from "@material-ui/core";
 import styled from "styled-components";
 import { theme } from "../style/theme";
 import Loader from "../components/Loader";
+import { selectStories, selectSelectedStoryId, selectStoryLoading, selectAllCommentsId } from "../redux-saga/selectors";
 
 const Container = styled.div`
   padding: 20px;
@@ -114,10 +115,10 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => {
   return {
-    stories: state.stories.byId,
-    selectedStoryId: state.stories.selectedStoryId,
-    loading: state.stories.loading,
-    allCommentsId: state.comments.allIds
+    stories: selectStories(state),
+    selectedStoryId: selectSelectedStoryId(state),
+    loading: selectStoryLoading(state),
+    allCommentsId: selectAllCommentsId(state)
   };
 };
 

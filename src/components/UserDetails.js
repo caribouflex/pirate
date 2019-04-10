@@ -51,7 +51,7 @@ const UserDetails = ({ author, date }) => {
       />
       <LayoutVertical>
         <MetaData>{author}</MetaData>
-        <MetatDataDate>{new Date(date).toDateString()}</MetatDataDate>
+        <MetatDataDate>{new Date(date * 1000).toDateString()}</MetatDataDate>
       </LayoutVertical>
     </Container>
   );

@@ -24,4 +24,4 @@ const Score = ({ score }) => {
 
 Score.propTypes = propTypes;
 
-export default Score;
+export default React.memo(Score);

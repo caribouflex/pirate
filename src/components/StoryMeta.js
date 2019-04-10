@@ -38,4 +38,4 @@ const StoryMeta = ({ author, date, loadComments, commentsCount }) => {
 
 StoryMeta.propTypes = propTypes;
 
-export default StoryMeta;
+export default React.memo(StoryMeta);
