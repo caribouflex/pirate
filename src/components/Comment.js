@@ -9,6 +9,8 @@ const Container = styled.div`
   color: ${theme.colors.font};
   display: flex;
   flex-direction: column;
+  padding: 15px;
+  border-bottom: 1px solid ${theme.colors.primary}70;
 `;
 
 const CommentText = styled.article`

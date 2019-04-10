@@ -4,15 +4,20 @@ import Story from "../components/Story";
 import { connect } from "react-redux";
 import {
   getComments,
-  setSelectedId,
+  setSelectedComment,
   setSelectedStory,
   getStories
 } from "../redux-saga/actions";
-import { Paper, Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import styled from "styled-components";
 import { theme } from "../style/theme";
 import Loader from "../components/Loader";
-import { selectStories, selectSelectedStoryId, selectStoryLoading, selectAllCommentsId } from "../redux-saga/selectors";
+import {
+  selectStories,
+  selectSelectedStoryId,
+  selectStoryLoading,
+  selectAllCommentsId
+} from "../redux-saga/selectors";
 
 const Container = styled.div`
   padding: 20px;
@@ -24,15 +29,8 @@ const Container = styled.div`
 const StyledButton = styled(Button)`
   color: ${theme.colors.accent} !important;
   border-color: ${theme.colors.accent} !important;
-  margin: auto !important;
-`;
-
-const PaperStyled = styled(Paper)`
-  padding: 20px;
-  margin: 20px;
-  background-color: ${({ selected }) => {
-    return !selected ? theme.colors.secondary : theme.colors.darkAccent;
-  }} !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 `;
 
 const propTypes = {
@@ -41,7 +39,7 @@ const propTypes = {
   loading: PropTypes.bool,
   stories: PropTypes.shape({}),
   storiesId: PropTypes.arrayOf(PropTypes.number),
-  setSelectedIdAction: PropTypes.func.isRequired,
+  setSelectedCommentAction: PropTypes.func.isRequired,
   setSelectedStoryAction: PropTypes.func.isRequired,
   selectedStoryId: PropTypes.string
 };
@@ -53,62 +51,59 @@ const defaultProps = {
   selectedStoryId: undefined
 };
 
-const Stories = ({
-  getCommentsAction,
-  getStoriesAction,
-  setSelectedIdAction,
-  setSelectedStoryAction,
-  stories,
-  loading,
-  selectedStoryId,
-  allCommentsId
-}) => {
-  const handleClick = (kids, id) => {
-    setSelectedIdAction(id);
+class Stories extends React.PureComponent {
+  handleClick = (kids, id) => {
+    const {
+      getCommentsAction,
+      setSelectedCommentAction,
+      setSelectedStoryAction,
+      allCommentsId
+    } = this.props;
+    setSelectedCommentAction(id);
     setSelectedStoryAction(id);
     if (!allCommentsId.includes(id)) {
       getCommentsAction(kids, id, null);
     }
   };
-  return (
-    <Container>
-      {stories &&
-        Object.keys(stories).map(id => {
-          const story = stories[id];
-          return (
-            <PaperStyled
-              key={id}
-              elevation={2}
-              selected={selectedStoryId && selectedStoryId === id}
-            >
+
+  render() {
+    console.log("RE-RENDER STORIES");
+    const { getStoriesAction, stories, loading, selectedStoryId } = this.props;
+    return (
+      <Container>
+        {stories &&
+          Object.keys(stories).map(id => {
+            const story = stories[id];
+            return (
               <Story
                 id={id}
+                key={id}
                 title={story.title}
                 link={story.url}
                 date={story.time}
                 author={story.by}
                 score={story.score}
                 commentsCount={story.descendants}
-                showComments={handleClick}
+                showComments={this.handleClick}
                 commentsId={story.kids}
                 selected={selectedStoryId ? selectedStoryId === id : false}
               />
-            </PaperStyled>
-          );
-        })}
-      <StyledButton variant="outlined" onClick={getStoriesAction}>
-        Load More <Loader visible={loading} />
-      </StyledButton>
-    </Container>
-  );
-};
+            );
+          })}
+        <StyledButton variant="outlined" onClick={getStoriesAction}>
+          Load More <Loader visible={loading} />
+        </StyledButton>
+      </Container>
+    );
+  }
+}
 
 Stories.propTypes = propTypes;
 Stories.defaultProps = defaultProps;
 
 const mapDispatchToProps = {
   getCommentsAction: getComments,
-  setSelectedIdAction: setSelectedId,
+  setSelectedCommentAction: setSelectedComment,
   setSelectedStoryAction: setSelectedStory,
   getStoriesAction: getStories
 };

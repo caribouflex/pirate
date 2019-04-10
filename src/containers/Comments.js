@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Comment from "../components/Comment";
 import {
   getComments,
-  setSelectedId,
+  setSelectedComment,
   setSelectedStory
 } from "../redux-saga/actions";
 import { IconButton } from "@material-ui/core";
@@ -18,7 +18,7 @@ import {
 } from "../redux-saga/selectors";
 
 const Container = styled.div`
-  ${({ visible }) => !visible && "display:none;"};
+  /* ${({ visible }) => !visible && "display:none;"}; */
   width: 50%;
   border-radius: 4px;
   background-color: ${theme.colors.secondary};
@@ -54,16 +54,11 @@ const Header = styled.header`
   border-bottom: 1px solid ${theme.colors.darkerFont};
 `;
 
-const Paper = styled.div`
-  padding: 15px;
-  border-bottom: 1px solid ${theme.colors.primary}70;
-`;
-
 const propTypes = {
   comments: PropTypes.shape({}),
   getCommentsAction: PropTypes.func.isRequired,
   parentId: PropTypes.number,
-  setSelectedIdAction: PropTypes.func.isRequired,
+  setSelectedCommentAction: PropTypes.func.isRequired,
   setSelectedStoryAction: PropTypes.func.isRequired,
   allCommentsId: PropTypes.arrayOf(PropTypes.string)
 };
@@ -77,23 +72,23 @@ const defaultProps = {
 const Comments = ({
   comments,
   getCommentsAction,
-  setSelectedIdAction,
+  setSelectedCommentAction,
   setSelectedStoryAction,
   parentId,
   allCommentsId
 }) => {
   const handleClick = (kids, id, parentId) => {
-    setSelectedIdAction(id);
-    if (!allCommentsId.includes(id)) {
+    setSelectedCommentAction(id);
+    if (!allCommentsId.includes(id.toString())) {
       getCommentsAction(kids, id, parentId);
     }
   };
   const backClick = () => {
-    setSelectedIdAction(parentId);
+    setSelectedCommentAction(parentId);
   };
   const closeClick = () => {
     setSelectedStoryAction(null);
-    setSelectedIdAction(null);
+    setSelectedCommentAction(null);
   };
   return (
     <Container visible={Object.keys(comments).length > 0}>
@@ -119,17 +114,16 @@ const Comments = ({
       {Object.keys(comments).map(id => {
         const comment = comments[id];
         return (
-          <Paper key={comment.id}>
-            <Comment
-              id={comment.id}
-              author={comment.by}
-              text={comment.text}
-              date={comment.time}
-              loadResponses={handleClick}
-              responsesId={comment.kids}
-              parent={comment.parent}
-            />
-          </Paper>
+          <Comment
+            key={comment.id}
+            id={comment.id}
+            author={comment.by}
+            text={comment.text}
+            date={comment.time}
+            loadResponses={handleClick}
+            responsesId={comment.kids}
+            parent={comment.parent}
+          />
         );
       })}
     </Container>
@@ -149,7 +143,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getCommentsAction: getComments,
-  setSelectedIdAction: setSelectedId,
+  setSelectedCommentAction: setSelectedComment,
   setSelectedStoryAction: setSelectedStory
 };
 

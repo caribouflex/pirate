@@ -7,7 +7,7 @@ const ACTIONS_STORIES = {
 const ACTIONS_COMMENTS = {
   getComments: "GET_COMMENTS",
   addComments: "ADD_COMMENTS",
-  setSelectedId: "SET_SELECTED_ID"
+  setSelectedComment: "SET_SELECTED_COMMENT"
 };
 
 const APP = {};

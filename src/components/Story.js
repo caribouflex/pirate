@@ -12,6 +12,12 @@ const Container = styled.div`
   }}
   display: flex;
   flex-direction: row;
+
+  padding: 20px;
+  margin: 20px;
+  background-color: ${({ selected }) => {
+    return !selected ? theme.colors.secondary : theme.colors.darkAccent;
+  }};
 `;
 
 const Left = styled.div`
@@ -42,40 +48,42 @@ const defaultProps = {
   commentsId: []
 };
 
-const Story = ({
-  id,
-  author,
-  title,
-  link,
-  date,
-  score,
-  commentsCount,
-  showComments,
-  commentsId,
-  selected
-}) => {
-  const handleClick = () => {
+class Story extends React.PureComponent {
+  handleClick = () => {
+    const { id, showComments, commentsId } = this.props;
     showComments(commentsId, id);
   };
-  return (
-    <Container selected={selected}>
-      <Left>
-        <Title>
-          <Link href={link} target="_blank" dark={selected}>
-            {title}
-          </Link>
-        </Title>
-        <StoryMeta
-          author={author}
-          date={date}
-          loadComments={handleClick}
-          commentsCount={commentsCount}
-        />
-      </Left>
-      <Score score={score} />
-    </Container>
-  );
-};
+
+  render() {
+    const {
+      author,
+      title,
+      link,
+      date,
+      score,
+      commentsCount,
+      selected
+    } = this.props;
+    return (
+      <Container selected={selected}>
+        <Left>
+          <Title>
+            <Link href={link} target="_blank" dark={selected}>
+              {title}
+            </Link>
+          </Title>
+          <StoryMeta
+            author={author}
+            date={date}
+            loadComments={this.handleClick}
+            commentsCount={commentsCount}
+          />
+        </Left>
+        <Score score={score} />
+      </Container>
+    );
+  }
+}
 
 Story.propTypes = propTypes;
 Story.defaultProps = defaultProps;

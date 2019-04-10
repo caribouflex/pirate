@@ -60,4 +60,4 @@ const UserDetails = ({ author, date }) => {
 UserDetails.propTypes = propTypes;
 UserDetails.defaultProps = defaultProps;
 
-export default UserDetails;
+export default React.memo(UserDetails);

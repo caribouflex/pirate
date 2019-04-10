@@ -16,7 +16,7 @@ const comments = (state = initState, action) => {
       };
     case ACTIONS_COMMENTS.getComments:
       return { ...state, loading: true };
-    case ACTIONS_COMMENTS.setSelectedId:
+    case ACTIONS_COMMENTS.setSelectedComment:
       return {
         ...state,
         selectedId: action.id
