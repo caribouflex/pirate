@@ -1,14 +1,17 @@
 import { ACTIONS_COMMENTS } from "../constants";
 
-const comments = (state = {}, action) => {
+const initState = { byId: {}, allIds: [], loading: false, selectedId: null };
+
+const comments = (state = initState, action) => {
   switch (action.type) {
     case ACTIONS_COMMENTS.addComments:
-      const byStoryId = {};
+      const byId = {};
       const { commentObj, storyId, parentId } = action.action;
-      byStoryId[storyId] = { childrens: commentObj, parent: parentId };
+      byId[storyId] = { childrens: commentObj, parent: parentId };
       return {
         ...state,
-        ...byStoryId,
+        byId: { ...state.byId, ...byId },
+        allIds: [...state.allIds, storyId.toString()],
         loading: false
       };
     case ACTIONS_COMMENTS.getComments:

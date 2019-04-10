@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Button from "../components/Button";
 import Stories from "./Stories";
 import Comments from "./Comments";
 import AppBar from "@material-ui/core/AppBar";
@@ -15,12 +14,16 @@ const Layout = styled.div`
   flex-direction: row;
 `;
 
+const Application = styled.div`
+  position: relative;
+`;
+
 class App extends Component {
   render() {
     return (
-      <div>
+      <Application>
         <AppBar
-          style={{ backgroundColor: "transparent", boxShadow: "none" }}
+          style={{ backgroundColor: "black", boxShadow: "none" }}
           position="static"
         >
           <Toolbar>
@@ -32,12 +35,11 @@ class App extends Component {
             />
           </Toolbar>
         </AppBar>
-        <Button />
         <Layout>
           <Stories />
           <Comments />
         </Layout>
-      </div>
+      </Application>
     );
   }
 }

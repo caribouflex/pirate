@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import { theme } from "./theme";
+import { theme } from "../style/theme";
 
-export const Title = styled.h2`
-  color: #3c3c3c;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #fff;
-`;
-
-export const Link = styled.a`
+const Link = styled.a`
   text-decoration: none;
   cursor: pointer;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
   :link {
     color: ${({ dark }) => {
@@ -29,3 +27,5 @@ export const Link = styled.a`
     color: ${theme.colors.accent}80;
   }
 `;
+
+export default Link;

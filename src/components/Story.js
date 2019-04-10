@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { Link } from "../style/basic";
-import StoryDetails from "./StoryDetails";
+import Link from "./Link";
+import StoryMeta from "./StoryMeta";
 import Score from "./Score";
 import { theme } from "../style/theme";
 
@@ -20,6 +20,10 @@ const Left = styled.div`
 
 const Title = styled.h1`
   font-size: 1.6rem;
+
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const propTypes = {
@@ -35,7 +39,7 @@ const propTypes = {
 };
 
 const defaultProps = {
-  commentsId: [],
+  commentsId: []
 };
 
 const Story = ({
@@ -61,7 +65,7 @@ const Story = ({
             {title}
           </Link>
         </Title>
-        <StoryDetails
+        <StoryMeta
           author={author}
           date={date}
           loadComments={handleClick}

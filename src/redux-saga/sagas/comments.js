@@ -1,8 +1,10 @@
 import { put, takeLatest, all, call } from "redux-saga/effects";
 import { ACTIONS_COMMENTS } from "../constants";
 
+let itemQty = 20;
+
 function* fetchComments({ storyCommentIds, storyId, parentId }) {
-  let selectCommentsId = storyCommentIds.slice(0, 10);
+  let selectCommentsId = storyCommentIds.slice(0, itemQty);
   const commentObj = {};
   let responses = yield all(
     selectCommentsId.map(commentId => {

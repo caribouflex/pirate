@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Container = styled.h1`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
@@ -34,17 +34,15 @@ const MetatDataDate = styled(MetaData)`
 
 const propTypes = {
   author: PropTypes.string,
-  date: PropTypes.number,
-  loadComments: PropTypes.func
+  date: PropTypes.number
 };
 
 const defaultProps = {
   author: "",
-  date: 0,
-  loadComments: () => {}
+  date: 0
 };
 
-const Details = ({ author, date, loadComments }) => {
+const UserDetails = ({ author, date }) => {
   return (
     <Container>
       <Avatar
@@ -59,7 +57,7 @@ const Details = ({ author, date, loadComments }) => {
   );
 };
 
-Details.propTypes = propTypes;
-Details.defaultProps = defaultProps;
+UserDetails.propTypes = propTypes;
+UserDetails.defaultProps = defaultProps;
 
-export default Details;
+export default UserDetails;

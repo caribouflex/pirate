@@ -5,15 +5,25 @@ import { connect } from "react-redux";
 import {
   getComments,
   setSelectedId,
-  setSelectedStory
-} from "../redux-saga/actions/action";
-import { Paper } from "@material-ui/core";
+  setSelectedStory,
+  getStories
+} from "../redux-saga/actions";
+import { Paper, Button } from "@material-ui/core";
 import styled from "styled-components";
 import { theme } from "../style/theme";
+import Loader from "../components/Loader";
 
 const Container = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
   flex: 1;
+`;
+
+const StyledButton = styled(Button)`
+  color: ${theme.colors.accent} !important;
+  border-color: ${theme.colors.accent} !important;
+  margin: auto !important;
 `;
 
 const PaperStyled = styled(Paper)`
@@ -25,10 +35,11 @@ const PaperStyled = styled(Paper)`
 `;
 
 const propTypes = {
-  stories: PropTypes.shape({}),
-  loading: PropTypes.bool,
-  storiesId: PropTypes.arrayOf(PropTypes.number),
   getCommentsAction: PropTypes.func.isRequired,
+  getStoriesAction: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  stories: PropTypes.shape({}),
+  storiesId: PropTypes.arrayOf(PropTypes.number),
   setSelectedIdAction: PropTypes.func.isRequired,
   setSelectedStoryAction: PropTypes.func.isRequired,
   selectedStoryId: PropTypes.string
@@ -42,18 +53,21 @@ const defaultProps = {
 };
 
 const Stories = ({
-  storiesIds,
   getCommentsAction,
+  getStoriesAction,
   setSelectedIdAction,
   setSelectedStoryAction,
   stories,
   loading,
-  selectedStoryId
+  selectedStoryId,
+  allCommentsId
 }) => {
   const handleClick = (kids, id) => {
     setSelectedIdAction(id);
     setSelectedStoryAction(id);
-    getCommentsAction(kids, id, null);
+    if (!allCommentsId.includes(id)) {
+      getCommentsAction(kids, id, null);
+    }
   };
   return (
     <Container>
@@ -81,7 +95,9 @@ const Stories = ({
             </PaperStyled>
           );
         })}
-      {loading && <p>Loading...</p>}
+      <StyledButton variant="outlined" onClick={getStoriesAction}>
+        Load More <Loader visible={loading} />
+      </StyledButton>
     </Container>
   );
 };
@@ -92,14 +108,16 @@ Stories.defaultProps = defaultProps;
 const mapDispatchToProps = {
   getCommentsAction: getComments,
   setSelectedIdAction: setSelectedId,
-  setSelectedStoryAction: setSelectedStory
+  setSelectedStoryAction: setSelectedStory,
+  getStoriesAction: getStories
 };
 
 const mapStateToProps = state => {
   return {
     stories: state.stories.byId,
     selectedStoryId: state.stories.selectedStoryId,
-    loading: state.stories.loading
+    loading: state.stories.loading,
+    allCommentsId: state.comments.allIds
   };
 };
 

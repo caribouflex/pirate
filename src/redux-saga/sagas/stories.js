@@ -1,8 +1,11 @@
 import { put, takeLatest, call, all } from "redux-saga/effects";
 import { ACTIONS_STORIES } from "../constants";
 
+let offset = 0;
+let itemQty = 10;
+
 function* getStories(storiesId) {
-  let selectStoriesId = storiesId.slice(0, 10);
+  let selectStoriesId = storiesId.slice(offset, offset + itemQty);
   const storiesObj = {};
   let responses = yield all(
     selectStoriesId.map(storyId => {
@@ -18,10 +21,13 @@ function* getStories(storiesId) {
     })
   );
 
-  //convert to object
+  // convert to object
   stories.forEach(element => {
     storiesObj[element.id] = element;
   });
+
+  // set loading position
+  offset += 10;
 
   return storiesObj;
 }
