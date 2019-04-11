@@ -48,7 +48,7 @@ const propTypes = {
   storiesId: PropTypes.arrayOf(PropTypes.number),
   setSelectedCommentAction: PropTypes.func.isRequired,
   setSelectedStoryAction: PropTypes.func.isRequired,
-  selectedStoryId: PropTypes.string
+  selectedStoryId: PropTypes.number
 };
 
 const defaultProps = {
@@ -56,7 +56,7 @@ const defaultProps = {
   stories: {},
   loading: false,
   storiesId: [],
-  selectedStoryId: undefined
+  selectedStoryId: -1
 };
 
 class Stories extends React.PureComponent {
@@ -75,7 +75,7 @@ class Stories extends React.PureComponent {
     setSelectedCommentAction(id);
     setSelectedStoryAction(id);
     if (!allCommentsId.includes(id)) {
-      getCommentsAction(kids, id, null);
+      getCommentsAction(kids, id, -1);
     }
   };
 
@@ -88,7 +88,7 @@ class Stories extends React.PureComponent {
       errorMessage
     } = this.props;
     return (
-      <Container visible={selectedStoryId === null}>
+      <Container visible={selectedStoryId === -1}>
         {errorMessage ? (
           <Error>{errorMessage}</Error>
         ) : (

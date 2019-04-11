@@ -31,7 +31,7 @@ const propTypes = {
 const defaultProps = {
   date: undefined,
   responsesId: [],
-  parent: null,
+  parent: -1,
   author: "",
   text: ""
 };

@@ -2,13 +2,13 @@ import commentsReducer from "../comments";
 import { ACTIONS_COMMENTS } from "../../constants";
 
 const basicCompleteState = {
-  allIds: ["1"],
+  allIds: [1],
   byId: {
-    "1": { childrens: { "123": { title: "Hello" } }, parent: 987 }
+    1: { childrens: { 123: { title: "Hello" } }, parent: 987 }
   },
   errorMessage: null,
   loading: false,
-  selectedId: null
+  selectedId: -1
 };
 
 describe("Comments reducer", () => {
@@ -17,7 +17,7 @@ describe("Comments reducer", () => {
       byId: {},
       allIds: [],
       loading: false,
-      selectedId: null,
+      selectedId: -1,
       errorMessage: null
     });
   });
@@ -25,7 +25,7 @@ describe("Comments reducer", () => {
   it("Should handle ADD_COMMENTS", () => {
     const action1 = {
       commentObj: { 123: { title: "Hello" } },
-      storyId: "1",
+      storyId: 1,
       parentId: 987
     };
     expect(
@@ -34,29 +34,29 @@ describe("Comments reducer", () => {
         action: action1
       })
     ).toEqual({
-      allIds: ["1"],
-      byId: { "1": { childrens: { "123": { title: "Hello" } }, parent: 987 } },
+      allIds: [1],
+      byId: { 1: { childrens: { 123: { title: "Hello" } }, parent: 987 } },
       errorMessage: null,
       loading: false,
-      selectedId: null
+      selectedId: -1
     });
 
     const action2 = {
       commentObj: { 456: { title: "Hello" } },
-      storyId: "2",
-      parentId: null
+      storyId: 2,
+      parentId: -1
     };
 
     expect(
       commentsReducer(
         {
-          allIds: ["1"],
+          allIds: [1],
           byId: {
-            "1": { childrens: { "123": { title: "Hello" } }, parent: 987 }
+            1: { childrens: { 123: { title: "Hello" } }, parent: 987 }
           },
           errorMessage: null,
           loading: false,
-          selectedId: null
+          selectedId: -1
         },
         {
           type: ACTIONS_COMMENTS.addComments,
@@ -64,14 +64,14 @@ describe("Comments reducer", () => {
         }
       )
     ).toEqual({
-      allIds: ["1", "2"],
+      allIds: [1, 2],
       byId: {
-        "1": { childrens: { "123": { title: "Hello" } }, parent: 987 },
-        "2": { childrens: { "456": { title: "Hello" } }, parent: null }
+        1: { childrens: { 123: { title: "Hello" } }, parent: 987 },
+        2: { childrens: { 456: { title: "Hello" } }, parent: -1 }
       },
       errorMessage: null,
       loading: false,
-      selectedId: null
+      selectedId: -1
     });
   });
 
@@ -81,13 +81,13 @@ describe("Comments reducer", () => {
         type: ACTIONS_COMMENTS.getComments
       })
     ).toEqual({
-      allIds: ["1"],
+      allIds: [1],
       byId: {
-        "1": { childrens: { "123": { title: "Hello" } }, parent: 987 }
+        1: { childrens: { 123: { title: "Hello" } }, parent: 987 }
       },
       errorMessage: null,
       loading: true,
-      selectedId: null
+      selectedId: -1
     });
   });
 
@@ -95,16 +95,16 @@ describe("Comments reducer", () => {
     expect(
       commentsReducer(basicCompleteState, {
         type: ACTIONS_COMMENTS.setSelectedComment,
-        id: "123"
+        id: 123
       })
     ).toEqual({
-      allIds: ["1"],
+      allIds: [1],
       byId: {
-        "1": { childrens: { "123": { title: "Hello" } }, parent: 987 }
+        1: { childrens: { 123: { title: "Hello" } }, parent: 987 }
       },
       errorMessage: null,
       loading: false,
-      selectedId: "123"
+      selectedId: 123
     });
   });
 
@@ -115,13 +115,13 @@ describe("Comments reducer", () => {
         error: { message: "Error" }
       })
     ).toEqual({
-      allIds: ["1"],
+      allIds: [1],
       byId: {
-        "1": { childrens: { "123": { title: "Hello" } }, parent: 987 }
+        1: { childrens: { 123: { title: "Hello" } }, parent: 987 }
       },
       errorMessage: "Error",
       loading: false,
-      selectedId: null
+      selectedId: -1
     });
   });
 });

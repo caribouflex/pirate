@@ -24,7 +24,7 @@ describe("Redux selectors", () => {
         19633579
       ],
       byId: {
-        "19632052": {
+        19632052: {
           by: "signa11",
           descendants: 20,
           id: 19632052,
@@ -44,7 +44,7 @@ describe("Redux selectors", () => {
           type: "story",
           url: "https://victorzhou.com/blog/intro-to-random-forests/"
         },
-        "19632449": {
+        19632449: {
           by: "kragniz",
           descendants: 891,
           id: 19632449,
@@ -55,7 +55,7 @@ describe("Redux selectors", () => {
           type: "story",
           url: "https://www.bbc.co.uk/news/uk-47891737"
         },
-        "19632900": {
+        19632900: {
           by: "signa11",
           descendants: 39,
           id: 19632900,
@@ -67,7 +67,7 @@ describe("Redux selectors", () => {
           url:
             "https://blog.knatten.org/2018/03/09/lvalues-rvalues-glvalues-prvalues-xvalues-help/"
         },
-        "19633131": {
+        19633131: {
           by: "tooba",
           descendants: 71,
           id: 19633131,
@@ -78,7 +78,7 @@ describe("Redux selectors", () => {
           type: "story",
           url: "https://www.bbc.co.uk/news/technology-47880288"
         },
-        "19634237": {
+        19634237: {
           by: "sohkamyung",
           descendants: 12,
           id: 19634237,
@@ -91,7 +91,7 @@ describe("Redux selectors", () => {
           url:
             "https://blog.mozilla.org/futurereleases/2019/04/11/firefox-beta-for-windows-10-on-qualcomm-snapdragon-always-connected-pcs-now-available/"
         },
-        "19634570": {
+        19634570: {
           by: "headalgorithm",
           descendants: 13,
           id: 19634570,
@@ -114,7 +114,7 @@ describe("Redux selectors", () => {
           url:
             "https://arstechnica.com/science/2019/04/a-private-spacecraft-from-israel-will-attempt-a-moon-landing-thursday/"
         },
-        "19634947": {
+        19634947: {
           by: "RmDen",
           descendants: 48,
           id: 19634947,
@@ -148,7 +148,7 @@ describe("Redux selectors", () => {
           url:
             "https://www.citylab.com/transportation/2019/04/protected-bike-lanes-traffic-safety-cambridge-bicycle-plan/586876/"
         },
-        "19635410": {
+        19635410: {
           by: "hhs",
           descendants: 2,
           id: 19635410,
@@ -161,7 +161,7 @@ describe("Redux selectors", () => {
           url:
             "https://www.buzzfeednews.com/article/katienotopoulos/facebook-advertisers-data-brokers-car-dealerships"
         },
-        "19636068": {
+        19636068: {
           by: "bushido",
           descendants: 0,
           id: 19636068,
@@ -174,14 +174,14 @@ describe("Redux selectors", () => {
         }
       },
       loading: false,
-      selectedStoryId: "19632052",
+      selectedStoryId: 19632052,
       errorMessage: null
     },
     comments: {
       byId: {
-        "19632052": {
+        19632052: {
           childrens: {
-            "19632423": {
+            19632423: {
               by: "djaychela",
               id: 19632423,
               kids: [19633366, 19633561, 19632911],
@@ -191,14 +191,14 @@ describe("Redux selectors", () => {
               time: 1554975283,
               type: "comment"
             },
-            "19632626": {
+            19632626: {
               deleted: true,
               id: 19632626,
               parent: 19632052,
               time: 1554977028,
               type: "comment"
             },
-            "19632885": {
+            19632885: {
               by: "techno_modus",
               id: 19632885,
               parent: 19632052,
@@ -207,7 +207,7 @@ describe("Redux selectors", () => {
               time: 1554979468,
               type: "comment"
             },
-            "19633358": {
+            19633358: {
               by: "anthony_doan",
               id: 19633358,
               kids: [19634183, 19633594],
@@ -217,7 +217,7 @@ describe("Redux selectors", () => {
               time: 1554983610,
               type: "comment"
             },
-            "19633598": {
+            19633598: {
               by: "chaosbutters",
               id: 19633598,
               parent: 19632052,
@@ -226,7 +226,7 @@ describe("Redux selectors", () => {
               time: 1554985091,
               type: "comment"
             },
-            "19633611": {
+            19633611: {
               by: "b_tterc_p",
               id: 19633611,
               kids: [19635648, 19633728, 19635103],
@@ -236,7 +236,7 @@ describe("Redux selectors", () => {
               time: 1554985160,
               type: "comment"
             },
-            "19633940": {
+            19633940: {
               by: "queercode",
               id: 19633940,
               parent: 19632052,
@@ -245,7 +245,7 @@ describe("Redux selectors", () => {
               time: 1554987428,
               type: "comment"
             },
-            "19634213": {
+            19634213: {
               by: "vzhou842",
               id: 19634213,
               parent: 19632052,
@@ -255,22 +255,22 @@ describe("Redux selectors", () => {
               type: "comment"
             }
           },
-          parent: null
+          parent: -1
         }
       },
-      allIds: ["19632052"],
+      allIds: [19632052],
       loading: false,
-      selectedId: "19632052",
+      selectedId: 19632052,
       errorMessage: null
     }
   };
 
   it("Should return comments ID", () => {
-    expect(selectAllCommentsId(state)).toEqual(["19632052"]);
+    expect(selectAllCommentsId(state)).toEqual([19632052]);
   });
 
   it("Should return comment parent", () => {
-    expect(selectCommentParent(state)).toEqual(null);
+    expect(selectCommentParent(state)).toEqual(-1);
   });
 
   it("Should return stories", () => {
@@ -278,7 +278,7 @@ describe("Redux selectors", () => {
   });
 
   it("Should return selected story id", () => {
-    expect(selectSelectedStoryId(state)).toEqual("19632052");
+    expect(selectSelectedStoryId(state)).toEqual(19632052);
   });
 
   it("Should return the loading status of the stories", () => {

@@ -40,7 +40,7 @@ const Container = styled.div`
 `;
 
 const propTypes = {
-  allCommentsId: PropTypes.arrayOf(PropTypes.string),
+  allCommentsId: PropTypes.arrayOf(PropTypes.number),
   comments: PropTypes.shape({}),
   errorMessage: PropTypes.string,
   getCommentsAction: PropTypes.func.isRequired,
@@ -52,7 +52,7 @@ const propTypes = {
 
 const defaultProps = {
   comments: {},
-  parentId: null,
+  parentId: -1,
   allCommentsId: [],
   errorMessage: null
 };
@@ -65,7 +65,7 @@ class Comments extends React.PureComponent {
       setSelectedCommentAction
     } = this.props;
     setSelectedCommentAction(id);
-    if (!allCommentsId.includes(id.toString())) {
+    if (!allCommentsId.includes(id)) {
       getCommentsAction(kids, id, parentId);
     }
   };
@@ -77,8 +77,8 @@ class Comments extends React.PureComponent {
 
   closeClick = () => {
     const { setSelectedCommentAction, setSelectedStoryAction } = this.props;
-    setSelectedStoryAction(null);
-    setSelectedCommentAction(null);
+    setSelectedStoryAction(-1);
+    setSelectedCommentAction(-1);
   };
 
   render() {
@@ -87,7 +87,6 @@ class Comments extends React.PureComponent {
     return (
       <Container visible={visible}>
         <CommentsHeader
-          backArrowVisible={visible}
           onBackClick={this.backClick}
           onCloseClick={this.closeClick}
           parentId={parentId}

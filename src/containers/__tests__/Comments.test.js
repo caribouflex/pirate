@@ -11,7 +11,7 @@ describe("<Comments />", () => {
   const setSelectedStoryAction = jest.fn();
 
   const mockComments = {
-    "19630105": {
+    19630105: {
       by: "dmethvin",
       id: 19630105,
       kids: [
@@ -30,7 +30,7 @@ describe("<Comments />", () => {
       type: "comment"
     }
   };
-  
+
   it("Should renders without crashing", () => {
     const wrapper = shallow(
       <Comments
@@ -96,7 +96,7 @@ describe("<Comments />", () => {
   });
 
   it("Should not call getCommentsAction if id exists", () => {
-    const commentsId = ["123456"];
+    const commentsId = [123456];
     const wrapper = shallow(
       <Comments
         allCommentsId={commentsId}
@@ -107,7 +107,7 @@ describe("<Comments />", () => {
       />
     );
     const instance = wrapper.instance();
-    instance.handleClick([], "123456", 12);
+    instance.handleClick([], 123456, 12);
     expect(getCommentsAction).not.toHaveBeenCalled();
   });
 });

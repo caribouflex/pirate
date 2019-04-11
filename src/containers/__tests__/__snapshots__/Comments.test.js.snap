@@ -8,7 +8,7 @@ ShallowWrapper {
     comments={Object {}}
     errorMessage={null}
     getCommentsAction={[MockFunction]}
-    parentId={null}
+    parentId={-1}
     setSelectedCommentAction={[MockFunction]}
     setSelectedStoryAction={[MockFunction]}
     visible={true}
@@ -29,10 +29,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <UNDEFINED
-          backArrowVisible={true}
           onBackClick={[Function]}
           onCloseClick={[Function]}
-          parentId={null}
+          parentId={-1}
         />,
         Array [],
       ],
@@ -45,10 +44,9 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "backArrowVisible": true,
           "onBackClick": [Function],
           "onCloseClick": [Function],
-          "parentId": null,
+          "parentId": -1,
         },
         "ref": null,
         "rendered": null,
@@ -109,10 +107,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <UNDEFINED
-            backArrowVisible={true}
             onBackClick={[Function]}
             onCloseClick={[Function]}
-            parentId={null}
+            parentId={-1}
           />,
           Array [],
         ],
@@ -125,10 +122,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "backArrowVisible": true,
             "onBackClick": [Function],
             "onCloseClick": [Function],
-            "parentId": null,
+            "parentId": -1,
           },
           "ref": null,
           "rendered": null,
@@ -238,7 +234,7 @@ ShallowWrapper {
     }
     errorMessage={null}
     getCommentsAction={[MockFunction]}
-    parentId={null}
+    parentId={-1}
     setSelectedCommentAction={[MockFunction]}
     setSelectedStoryAction={[MockFunction]}
     visible={true}
@@ -259,10 +255,9 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <UNDEFINED
-          backArrowVisible={true}
           onBackClick={[Function]}
           onCloseClick={[Function]}
-          parentId={null}
+          parentId={-1}
         />,
         Array [
           <Comment
@@ -295,10 +290,9 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "function",
         "props": Object {
-          "backArrowVisible": true,
           "onBackClick": [Function],
           "onCloseClick": [Function],
-          "parentId": null,
+          "parentId": -1,
         },
         "ref": null,
         "rendered": null,
@@ -384,10 +378,9 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <UNDEFINED
-            backArrowVisible={true}
             onBackClick={[Function]}
             onCloseClick={[Function]}
-            parentId={null}
+            parentId={-1}
           />,
           Array [
             <Comment
@@ -420,10 +413,9 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "function",
           "props": Object {
-            "backArrowVisible": true,
             "onBackClick": [Function],
             "onCloseClick": [Function],
-            "parentId": null,
+            "parentId": -1,
           },
           "ref": null,
           "rendered": null,

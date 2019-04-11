@@ -27,9 +27,7 @@ export const selectAllCommentsId = createSelector(
 export const selectCommentParent = createSelector(
   [getSelectedStoryId, getSelectedCommentId, getComments],
   (storyId, commentId, comments) =>
-    comments[commentId || storyId]
-      ? comments[commentId || storyId].parent
-      : null
+    comments[commentId || storyId] ? comments[commentId || storyId].parent : -1
 );
 
 export const selectCommentChildrens = createSelector(
@@ -57,5 +55,5 @@ export const selectStoryLoading = createSelector(
 
 export const selectCommentsOpen = createSelector(
   [getSelectedCommentId],
-  getSelectedCommentId => getSelectedCommentId !== null
+  getSelectedCommentId => getSelectedCommentId !== -1
 );

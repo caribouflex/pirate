@@ -26,17 +26,17 @@ const Title = styled.h1`
 const propTypes = {
   onBackClick: PropTypes.func.isRequired,
   onCloseClick: PropTypes.func.isRequired,
-  parentId: PropTypes.string
+  parentId: PropTypes.number
 };
 
 const defaultProps = {
-  parentId: ""
+  parentId: -1
 };
 
 const CommentsHeader = ({ onBackClick, onCloseClick, parentId }) => {
   return (
     <Header>
-      <IconButtonStyled onClick={onBackClick} hidden={parentId === null}>
+      <IconButtonStyled onClick={onBackClick} hidden={parentId === -1}>
         <Icon
           IconElement={ArrowBackIcon}
           color={theme.colors.font}
