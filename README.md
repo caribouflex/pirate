@@ -20,6 +20,18 @@ You can access to the article by clicking on the title link, and access the comm
 
 This application is responsive and will be well display on a mobile screen. When accessing the comments, they will be displayed on top of the article.
 
+## Dependencies
+
+This application is using : 
+- React
+- Redux
+- Redux-Saga
+- Material UI (For a few components)
+- Styled-components
+
+For testing : 
+- Enzyme
+
 ## Running the application
 
 ### **1- Install the dependencies:**
