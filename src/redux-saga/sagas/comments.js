@@ -44,3 +44,4 @@ function* commentsActionWatcher() {
 }
 
 export default commentsActionWatcher;
+export { fetchComments };
