@@ -10,13 +10,15 @@ const StyledIcon = styled(Icon)`
 `;
 
 const propTypes = {
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   kidsCount: PropTypes.number.isRequired,
   loadKids: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired
 };
 
-const defaultProps = {};
+const defaultProps = {
+  disabled: false
+};
 
 const KidNavigation = ({ loadKids, kidsCount, text, disabled }) => {
   return (

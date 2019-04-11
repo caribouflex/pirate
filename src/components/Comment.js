@@ -20,7 +20,7 @@ const CommentText = styled.article`
 
 const propTypes = {
   author: PropTypes.string,
-  date: PropTypes.number.isRequired,
+  date: PropTypes.number,
   id: PropTypes.number.isRequired,
   loadResponses: PropTypes.func.isRequired,
   parent: PropTypes.number,
@@ -29,6 +29,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  date: undefined,
   responsesId: [],
   parent: null,
   author: "",

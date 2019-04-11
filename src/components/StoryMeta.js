@@ -20,7 +20,11 @@ const propTypes = {
   author: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
   loadComments: PropTypes.func.isRequired,
-  commentsCount: PropTypes.number.isRequired
+  commentsCount: PropTypes.number
+};
+
+const defaultProps = {
+  commentsCount: 0
 };
 
 const StoryMeta = ({ author, date, loadComments, commentsCount }) => {
@@ -37,5 +41,6 @@ const StoryMeta = ({ author, date, loadComments, commentsCount }) => {
 };
 
 StoryMeta.propTypes = propTypes;
+StoryMeta.defaultProps = defaultProps;
 
 export default React.memo(StoryMeta);

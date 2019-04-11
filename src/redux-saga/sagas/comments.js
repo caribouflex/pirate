@@ -1,33 +1,42 @@
 import { put, takeLatest, all, call } from "redux-saga/effects";
-import { ACTIONS_COMMENTS } from "../constants";
+import { ACTIONS_COMMENTS, BASE_URL } from "../constants";
 
 let itemQty = 20;
 
 function* fetchComments({ storyCommentIds, storyId, parentId }) {
   let selectCommentsId = storyCommentIds.slice(0, itemQty);
   const commentObj = {};
-  let responses = yield all(
-    selectCommentsId.map(commentId => {
-      return call(
-        fetch,
-        `https://hacker-news.firebaseio.com/v0/item/${commentId}.json`
-      );
-    })
-  );
-  let comments = yield all(
-    responses.map(comment => {
-      return call([comment, comment.json]);
-    })
-  );
+  try {
+    let responses = yield all(
+      selectCommentsId.map(commentId => {
+        return call(fetch, `${BASE_URL}/item/${commentId}.json`);
+      })
+    );
 
-  // convert to object
-  comments.forEach(element => {
-    commentObj[element.id] = element;
-  });
+    let comments = yield all(
+      responses.map(comment => {
+        if (comment.status >= 400) {
+          const error = {
+            message: `An error occured: ${comment.status} ${comment.statusText}`
+          };
+          throw error;
+        }
+        return call([comment, comment.json]);
+      })
+    );
 
-  const action = { commentObj, storyId, parentId };
+    // convert to object
+    comments.forEach(element => {
+      commentObj[element.id] = element;
+    });
 
-  yield put({ type: ACTIONS_COMMENTS.addComments, action });
+    const action = { commentObj, storyId, parentId };
+
+    yield put({ type: ACTIONS_COMMENTS.addComments, action });
+  } catch (err) {
+    let error = { message: err.message };
+    yield put({ type: ACTIONS_COMMENTS.fetchCommentsFailure, error });
+  }
 }
 
 function* commentsActionWatcher() {

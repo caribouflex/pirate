@@ -16,14 +16,20 @@ import {
   selectStories,
   selectSelectedStoryId,
   selectStoryLoading,
-  selectAllCommentsId
+  selectAllCommentsId,
+  getStoriesErrorMessage
 } from "../redux-saga/selectors";
+import Error from "../components/Error";
 
 const Container = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   flex: 1;
+
+  @media (max-width: 1070px) {
+    ${({ visible }) => !visible && "display: none;"}
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -34,6 +40,7 @@ const StyledButton = styled(Button)`
 `;
 
 const propTypes = {
+  errorMessage: PropTypes.string,
   getCommentsAction: PropTypes.func.isRequired,
   getStoriesAction: PropTypes.func.isRequired,
   loading: PropTypes.bool,
@@ -45,6 +52,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  errorMessage: null,
   stories: {},
   loading: false,
   storiesId: [],
@@ -52,6 +60,11 @@ const defaultProps = {
 };
 
 class Stories extends React.PureComponent {
+  componentDidMount() {
+    const { getStoriesAction } = this.props;
+    getStoriesAction();
+  }
+
   handleClick = (kids, id) => {
     const {
       allCommentsId,
@@ -68,10 +81,18 @@ class Stories extends React.PureComponent {
 
   render() {
     console.log("RE-RENDER STORIES");
-    const { getStoriesAction, stories, loading, selectedStoryId } = this.props;
+    const {
+      getStoriesAction,
+      stories,
+      loading,
+      selectedStoryId,
+      errorMessage
+    } = this.props;
     return (
-      <Container>
-        {stories &&
+      <Container visible={selectedStoryId === null}>
+        {errorMessage ? (
+          <Error>{errorMessage}</Error>
+        ) : (
           Object.keys(stories).map(id => {
             const story = stories[id];
             return (
@@ -89,7 +110,8 @@ class Stories extends React.PureComponent {
                 selected={selectedStoryId ? selectedStoryId === id : false}
               />
             );
-          })}
+          })
+        )}
         <StyledButton variant="outlined" onClick={getStoriesAction}>
           Load More <Loader visible={loading} />
         </StyledButton>
@@ -113,7 +135,8 @@ const mapStateToProps = state => {
     stories: selectStories(state),
     selectedStoryId: selectSelectedStoryId(state),
     loading: selectStoryLoading(state),
-    allCommentsId: selectAllCommentsId(state)
+    allCommentsId: selectAllCommentsId(state),
+    errorMessage: getStoriesErrorMessage(state)
   };
 };
 

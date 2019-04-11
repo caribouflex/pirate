@@ -13,9 +13,11 @@ import {
   selectCommentParent,
   selectCommentChildrens,
   selectAllCommentsId,
-  selectCommentsOpen
+  selectCommentsOpen,
+  getCommentsErrorMessage
 } from "../redux-saga/selectors";
 import CommentsHeader from "../components/CommentsHeader";
+import Error from "../components/Error";
 
 const Container = styled.div`
   ${({ visible }) => !visible && "display:none;"};
@@ -33,12 +35,14 @@ const Container = styled.div`
     right: 0;
     width: 100%;
     height: fit-content;
+    z-index: 10;
   }
 `;
 
 const propTypes = {
   allCommentsId: PropTypes.arrayOf(PropTypes.string),
   comments: PropTypes.shape({}),
+  errorMessage: PropTypes.string,
   getCommentsAction: PropTypes.func.isRequired,
   parentId: PropTypes.number,
   setSelectedCommentAction: PropTypes.func.isRequired,
@@ -49,7 +53,8 @@ const propTypes = {
 const defaultProps = {
   comments: {},
   parentId: null,
-  allCommentsId: []
+  allCommentsId: [],
+  errorMessage: null
 };
 
 class Comments extends React.PureComponent {
@@ -77,7 +82,8 @@ class Comments extends React.PureComponent {
   };
 
   render() {
-    const { comments, parentId, visible } = this.props;
+    const { errorMessage, comments, parentId, visible } = this.props;
+
     return (
       <Container visible={visible}>
         <CommentsHeader
@@ -86,21 +92,25 @@ class Comments extends React.PureComponent {
           onCloseClick={this.closeClick}
           parentId={parentId}
         />
-        {Object.keys(comments).map(id => {
-          const comment = comments[id];
-          return (
-            <Comment
-              key={comment.id}
-              id={comment.id}
-              author={comment.by}
-              text={comment.text}
-              date={comment.time}
-              loadResponses={this.handleClick}
-              responsesId={comment.kids}
-              parent={comment.parent}
-            />
-          );
-        })}
+        {errorMessage ? (
+          <Error>{errorMessage}</Error>
+        ) : (
+          Object.keys(comments).map(id => {
+            const comment = comments[id];
+            return (
+              <Comment
+                key={comment.id}
+                id={comment.id}
+                author={comment.by}
+                text={comment.text}
+                date={comment.time}
+                loadResponses={this.handleClick}
+                responsesId={comment.kids}
+                parent={comment.parent}
+              />
+            );
+          })
+        )}
       </Container>
     );
   }
@@ -114,7 +124,8 @@ const mapStateToProps = state => {
     parentId: selectCommentParent(state),
     comments: selectCommentChildrens(state),
     allCommentsId: selectAllCommentsId(state),
-    visible: selectCommentsOpen(state)
+    visible: selectCommentsOpen(state),
+    errorMessage: getCommentsErrorMessage(state)
   };
 };
 

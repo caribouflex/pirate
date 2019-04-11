@@ -12,6 +12,10 @@ export const getAllCommentsId = state => state.comments.allIds;
 
 export const getComments = state => state.comments.byId;
 
+export const getCommentsErrorMessage = state => state.comments.errorMessage;
+
+export const getStoriesErrorMessage = state => state.stories.errorMessage;
+
 export const getCommentById = (state, props) =>
   props && state.comments.byId[props.id];
 
@@ -33,7 +37,7 @@ export const selectCommentChildrens = createSelector(
   (storyId, commentId, comments) =>
     comments[commentId || storyId]
       ? comments[commentId || storyId].childrens
-      : []
+      : {}
 );
 
 export const selectStories = createSelector(

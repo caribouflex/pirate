@@ -12,6 +12,7 @@ const Container = styled.div`
   }}
   display: flex;
   flex-direction: row;
+  border-radius: 4px;
 
   padding: 20px;
   margin: 20px;

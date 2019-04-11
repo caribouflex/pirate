@@ -4,7 +4,8 @@ const initState = {
   allIds: [],
   byId: {},
   loading: false,
-  selectedStoryId: null
+  selectedStoryId: null,
+  errorMessage: null
 };
 
 const stories = (state = initState, action) => {
@@ -20,6 +21,12 @@ const stories = (state = initState, action) => {
       return { ...state, loading: true };
     case ACTIONS_STORIES.setSelectedStory:
       return { ...state, selectedStoryId: action.id };
+    case ACTIONS_STORIES.fetchStoriesFailure:
+      return {
+        ...state,
+        errorMessage: action.error.message,
+        loading: false
+      };
     default:
       return state;
   }
