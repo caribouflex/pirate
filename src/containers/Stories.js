@@ -80,7 +80,6 @@ class Stories extends React.PureComponent {
   };
 
   render() {
-    console.log("RE-RENDER STORIES");
     const {
       getStoriesAction,
       stories,
