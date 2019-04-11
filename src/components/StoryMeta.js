@@ -32,6 +32,7 @@ const StoryMeta = ({ author, date, loadComments, commentsCount }) => {
     <Bottom>
       <UserDetails author={author} date={date} />
       <KidNavigation
+        disabled={commentsCount === 0}
         kidsCount={commentsCount}
         loadKids={loadComments}
         text={commentsCount > 1 ? "comments" : "comment"}

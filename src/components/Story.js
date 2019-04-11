@@ -37,7 +37,7 @@ const propTypes = {
   id: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   score: PropTypes.number.isRequired,
   date: PropTypes.number.isRequired,
   showComments: PropTypes.func.isRequired,
@@ -46,7 +46,8 @@ const propTypes = {
 };
 
 const defaultProps = {
-  commentsId: []
+  commentsId: [],
+  link: ""
 };
 
 class Story extends React.PureComponent {
