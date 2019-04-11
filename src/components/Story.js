@@ -34,7 +34,7 @@ const Title = styled.h1`
 `;
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   author: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,

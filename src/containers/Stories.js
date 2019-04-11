@@ -94,10 +94,11 @@ class Stories extends React.PureComponent {
         ) : (
           Object.keys(stories).map(id => {
             const story = stories[id];
+            const storyId = Number(id);
             return (
               <Story
-                id={id}
-                key={id}
+                id={storyId}
+                key={storyId}
                 title={story.title}
                 link={story.url}
                 date={story.time}
@@ -106,7 +107,9 @@ class Stories extends React.PureComponent {
                 commentsCount={story.descendants}
                 showComments={this.handleClick}
                 commentsId={story.kids}
-                selected={selectedStoryId ? selectedStoryId === id : false}
+                selected={
+                  selectedStoryId !== -1 ? selectedStoryId === storyId : false
+                }
               />
             );
           })
