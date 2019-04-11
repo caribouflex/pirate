@@ -1,4 +1,4 @@
-[[https://github.com/caribouflex/pirate/blob/master/public/images/logo.svg|alt=octocat]]
+![Pirate image](https://github.com/caribouflex/pirate/blob/master/public/images/pirate.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
