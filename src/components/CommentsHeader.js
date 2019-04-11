@@ -61,3 +61,5 @@ CommentsHeader.propTypes = propTypes;
 CommentsHeader.defaultProps = defaultProps;
 
 export default React.memo(CommentsHeader);
+// for tests
+export { Header, IconButtonStyled };

@@ -28,7 +28,7 @@ const MetaData = styled.div`
   font-style: italic;
 `;
 
-const MetatDataDate = styled(MetaData)`
+const MetaDataDate = styled(MetaData)`
   font-size: 11px;
 `;
 
@@ -42,6 +42,10 @@ const defaultProps = {
   date: 0
 };
 
+const getStringDate = date => {
+  return new Date(date * 1000).toDateString();
+};
+
 const UserDetails = ({ author, date }) => {
   return (
     <Container>
@@ -51,7 +55,7 @@ const UserDetails = ({ author, date }) => {
       />
       <LayoutVertical>
         <MetaData>{author}</MetaData>
-        <MetatDataDate>{new Date(date * 1000).toDateString()}</MetatDataDate>
+        <MetaDataDate>{getStringDate(date)}</MetaDataDate>
       </LayoutVertical>
     </Container>
   );
@@ -61,3 +65,5 @@ UserDetails.propTypes = propTypes;
 UserDetails.defaultProps = defaultProps;
 
 export default React.memo(UserDetails);
+
+export { Avatar, MetaData, MetaDataDate, getStringDate };

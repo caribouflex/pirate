@@ -27,6 +27,16 @@ const Application = styled.div`
   position: relative;
 `;
 
+const AppFooter = styled.footer`
+  text-align: center;
+  padding: 30px;
+  background-color: #000;
+
+  p {
+    margin: auto;
+  }
+`;
+
 class App extends PureComponent {
   render() {
     return (
@@ -43,6 +53,9 @@ class App extends PureComponent {
           <Stories />
           <Comments />
         </Layout>
+        <AppFooter>
+          <p>Created by Arthur Tressol</p>
+        </AppFooter>
       </Application>
     );
   }

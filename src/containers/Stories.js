@@ -144,3 +144,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Stories);
+
+export { Stories };

@@ -66,3 +66,5 @@ Comment.propTypes = propTypes;
 Comment.defaultProps = defaultProps;
 
 export default Comment;
+//used for tests
+export { CommentText };

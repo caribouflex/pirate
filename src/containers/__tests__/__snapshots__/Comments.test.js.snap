@@ -1,0 +1,531 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Comments /> Should be empty with no mock values 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Comments
+    allCommentsId={Array []}
+    comments={Object {}}
+    errorMessage={null}
+    getCommentsAction={[MockFunction]}
+    parentId={null}
+    setSelectedCommentAction={[MockFunction]}
+    setSelectedStoryAction={[MockFunction]}
+    visible={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <UNDEFINED
+          backArrowVisible={true}
+          onBackClick={[Function]}
+          onCloseClick={[Function]}
+          parentId={null}
+        />,
+        Array [],
+      ],
+      "visible": true,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "backArrowVisible": true,
+          "onBackClick": [Function],
+          "onCloseClick": [Function],
+          "parentId": null,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": Object {
+          "$$typeof": Symbol(react.memo),
+          "compare": null,
+          "type": [Function],
+        },
+      },
+    ],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-VigVT",
+        "isStatic": false,
+        "rules": Array [
+          "
+  ",
+          [Function],
+          ";
+  width: 50%;
+  border-radius: 4px;
+  background-color: ",
+          "#1f2833",
+          ";
+  margin: 20px;
+
+  @media (max-width: 1070px) {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 10;
+  }
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-VigVT",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <UNDEFINED
+            backArrowVisible={true}
+            onBackClick={[Function]}
+            onCloseClick={[Function]}
+            parentId={null}
+          />,
+          Array [],
+        ],
+        "visible": true,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "backArrowVisible": true,
+            "onBackClick": [Function],
+            "onCloseClick": [Function],
+            "parentId": null,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          },
+        },
+      ],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-VigVT",
+          "isStatic": false,
+          "rules": Array [
+            "
+  ",
+            [Function],
+            ";
+  width: 50%;
+  border-radius: 4px;
+  background-color: ",
+            "#1f2833",
+            ";
+  margin: 20px;
+
+  @media (max-width: 1070px) {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 10;
+  }
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-VigVT",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
+
+exports[`<Comments /> Should renders with mock data 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Comments
+    allCommentsId={Array []}
+    comments={
+      Object {
+        "19630105": Object {
+          "by": "dmethvin",
+          "id": 19630105,
+          "kids": Array [
+            19630188,
+            19630645,
+            19630399,
+            19630134,
+            19630111,
+            19630131,
+            19630233,
+          ],
+          "parent": 19629614,
+          "text": "AMP is just a set of conventions and limitations that, when followed, make for a fast site. Anyone can make a fast site if they follow similar rules. Most sites don&#x27;t do that because either the developers want to use something that&#x27;s &quot;nicer&quot; to code but a lot bigger, or because the marketing department insists on loading 12 different tracking and analytics progams--when they probably only use one or two.",
+          "time": 1554943687,
+          "type": "comment",
+        },
+      }
+    }
+    errorMessage={null}
+    getCommentsAction={[MockFunction]}
+    parentId={null}
+    setSelectedCommentAction={[MockFunction]}
+    setSelectedStoryAction={[MockFunction]}
+    visible={true}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": Array [
+        <UNDEFINED
+          backArrowVisible={true}
+          onBackClick={[Function]}
+          onCloseClick={[Function]}
+          parentId={null}
+        />,
+        Array [
+          <Comment
+            author="dmethvin"
+            date={1554943687}
+            id={19630105}
+            loadResponses={[Function]}
+            parent={19629614}
+            responsesId={
+              Array [
+                19630188,
+                19630645,
+                19630399,
+                19630134,
+                19630111,
+                19630131,
+                19630233,
+              ]
+            }
+            text="AMP is just a set of conventions and limitations that, when followed, make for a fast site. Anyone can make a fast site if they follow similar rules. Most sites don&#x27;t do that because either the developers want to use something that&#x27;s &quot;nicer&quot; to code but a lot bigger, or because the marketing department insists on loading 12 different tracking and analytics progams--when they probably only use one or two."
+          />,
+        ],
+      ],
+      "visible": true,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "backArrowVisible": true,
+          "onBackClick": [Function],
+          "onCloseClick": [Function],
+          "parentId": null,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": Object {
+          "$$typeof": Symbol(react.memo),
+          "compare": null,
+          "type": [Function],
+        },
+      },
+      Object {
+        "instance": null,
+        "key": "19630105",
+        "nodeType": "function",
+        "props": Object {
+          "author": "dmethvin",
+          "date": 1554943687,
+          "id": 19630105,
+          "loadResponses": [Function],
+          "parent": 19629614,
+          "responsesId": Array [
+            19630188,
+            19630645,
+            19630399,
+            19630134,
+            19630111,
+            19630131,
+            19630233,
+          ],
+          "text": "AMP is just a set of conventions and limitations that, when followed, make for a fast site. Anyone can make a fast site if they follow similar rules. Most sites don&#x27;t do that because either the developers want to use something that&#x27;s &quot;nicer&quot; to code but a lot bigger, or because the marketing department insists on loading 12 different tracking and analytics progams--when they probably only use one or two.",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "attrs": Array [],
+      "componentStyle": ComponentStyle {
+        "componentId": "sc-VigVT",
+        "isStatic": false,
+        "rules": Array [
+          "
+  ",
+          [Function],
+          ";
+  width: 50%;
+  border-radius: 4px;
+  background-color: ",
+          "#1f2833",
+          ";
+  margin: 20px;
+
+  @media (max-width: 1070px) {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 10;
+  }
+",
+        ],
+      },
+      "displayName": "styled.div",
+      "foldedComponentIds": Array [],
+      "render": [Function],
+      "styledComponentId": "sc-VigVT",
+      "target": "div",
+      "toString": [Function],
+      "warnTooManyClasses": [Function],
+      "withComponent": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": Array [
+          <UNDEFINED
+            backArrowVisible={true}
+            onBackClick={[Function]}
+            onCloseClick={[Function]}
+            parentId={null}
+          />,
+          Array [
+            <Comment
+              author="dmethvin"
+              date={1554943687}
+              id={19630105}
+              loadResponses={[Function]}
+              parent={19629614}
+              responsesId={
+                Array [
+                  19630188,
+                  19630645,
+                  19630399,
+                  19630134,
+                  19630111,
+                  19630131,
+                  19630233,
+                ]
+              }
+              text="AMP is just a set of conventions and limitations that, when followed, make for a fast site. Anyone can make a fast site if they follow similar rules. Most sites don&#x27;t do that because either the developers want to use something that&#x27;s &quot;nicer&quot; to code but a lot bigger, or because the marketing department insists on loading 12 different tracking and analytics progams--when they probably only use one or two."
+            />,
+          ],
+        ],
+        "visible": true,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "backArrowVisible": true,
+            "onBackClick": [Function],
+            "onCloseClick": [Function],
+            "parentId": null,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          },
+        },
+        Object {
+          "instance": null,
+          "key": "19630105",
+          "nodeType": "function",
+          "props": Object {
+            "author": "dmethvin",
+            "date": 1554943687,
+            "id": 19630105,
+            "loadResponses": [Function],
+            "parent": 19629614,
+            "responsesId": Array [
+              19630188,
+              19630645,
+              19630399,
+              19630134,
+              19630111,
+              19630131,
+              19630233,
+            ],
+            "text": "AMP is just a set of conventions and limitations that, when followed, make for a fast site. Anyone can make a fast site if they follow similar rules. Most sites don&#x27;t do that because either the developers want to use something that&#x27;s &quot;nicer&quot; to code but a lot bigger, or because the marketing department insists on loading 12 different tracking and analytics progams--when they probably only use one or two.",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "attrs": Array [],
+        "componentStyle": ComponentStyle {
+          "componentId": "sc-VigVT",
+          "isStatic": false,
+          "rules": Array [
+            "
+  ",
+            [Function],
+            ";
+  width: 50%;
+  border-radius: 4px;
+  background-color: ",
+            "#1f2833",
+            ";
+  margin: 20px;
+
+  @media (max-width: 1070px) {
+    position: absolute;
+    margin: 0;
+    left: 0;
+    top: 80px;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: fit-content;
+    z-index: 10;
+  }
+",
+          ],
+        },
+        "displayName": "styled.div",
+        "foldedComponentIds": Array [],
+        "render": [Function],
+        "styledComponentId": "sc-VigVT",
+        "target": "div",
+        "toString": [Function],
+        "warnTooManyClasses": [Function],
+        "withComponent": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__childContext__): null,
+}
+`;
